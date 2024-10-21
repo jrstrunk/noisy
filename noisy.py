@@ -259,7 +259,12 @@ def main():
     args = parser.parse_args()
 
     level = getattr(logging, args.log.upper())
-    logging.basicConfig(level=level)
+    logging.basicConfig(
+        level=level,
+        filename='noisy.log',
+        filemode='w',
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
 
     crawler = Crawler()
     crawler.load_config_file(args.config)
